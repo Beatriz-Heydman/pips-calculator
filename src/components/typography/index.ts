@@ -8,6 +8,6 @@ export const Typography = styled.label<TypographyProps>`
 color: ${({ color = "#fff" }) => color};
 font-size: ${({ fontSize = "1rem" }) => fontSize};
 font-weight: ${({ fontWeight = "500" }) => fontWeight };
-font-family: ${({ fontFamily = "arial" }) => fontFamily};
+font-family: ${({ fontFamily = "Inter" }) => fontFamily};
 line-height: ${({ lineHeight = "normal" }) => lineHeight};
 `
