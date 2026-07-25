@@ -1,13 +1,12 @@
 // Components
-import { Header } from './components/header'
+import { HomeView } from "./pages/home";
 
 function App() {
-
   return (
     <>
-    <Header/>
+      <HomeView />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
