@@ -10,7 +10,7 @@ export const StyledCalculationSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1.5rem;
+  padding: 1rem 1.5rem;
   position: absolute;
   top: 40%;
 `;
