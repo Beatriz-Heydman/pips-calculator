@@ -3,13 +3,14 @@ import { PiCurrencyDollarBold, PiCalculatorLight } from "react-icons/pi";
 import { IoAnalyticsSharp } from "react-icons/io5";
 
 //Components
+import { Button } from "../../../../components/button";
 import { Flex } from "../../../../components/flex";
 import { Input } from "../../../../components/input";
+import { Separator } from "../../../../components/separator";
 import { Typography } from "../../../../components/typography";
 
 // Styles
 import { StyledCalculationSection } from "./styles";
-import { Button } from "../../../../components/button";
 
 export function CalculationSection() {
   return (
@@ -29,6 +30,8 @@ export function CalculationSection() {
             rightSlot="Pips"
             value="20"
           />
+
+          <Separator />
 
           <Input
             label={
