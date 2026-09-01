@@ -1,8 +1,8 @@
 // Types
-import type { ButtonProps } from "./types";
+import type { ButtonProps } from './types';
 
 // Styles
-import { StyledButton } from "./styles";
+import { StyledButton } from './styles';
 
 export function Button({ icon, label, onClick }: ButtonProps) {
   return (

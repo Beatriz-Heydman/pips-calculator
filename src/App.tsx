@@ -1,5 +1,5 @@
 // Components
-import { HomeView } from "./pages/home";
+import { HomeView } from './pages/home';
 
 function App() {
   return (

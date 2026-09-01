@@ -1,30 +1,29 @@
 // Libs
-import { useState } from "react";
-import { PiCurrencyDollarBold, PiCalculatorLight } from "react-icons/pi";
-import { IoAnalyticsSharp } from "react-icons/io5";
-import { LuWallet } from "react-icons/lu";
+import { useState } from 'react';
+import { PiCurrencyDollarBold, PiCalculatorLight } from 'react-icons/pi';
+import { IoAnalyticsSharp } from 'react-icons/io5';
+import { LuWallet } from 'react-icons/lu';
 
 //Components
-import { Button } from "../../../../components/button";
-import { Flex } from "../../../../components/flex";
-import { Input } from "../../../../components/input";
-import { Separator } from "../../../../components/separator";
-import { Typography } from "../../../../components/typography";
+import { Button } from '../../../../components/button';
+import { Flex } from '../../../../components/flex';
+import { Input } from '../../../../components/input';
+import { Separator } from '../../../../components/separator';
+import { Typography } from '../../../../components/typography';
 
 // Styles
-import { StyledCalculationSection } from "./styles";
+import { StyledCalculationSection } from './styles';
 
 // Utils
-import { formatDollar } from "../../../../shared/utils/format-dollar";
+import { formatDollar } from '../../../../shared/utils/format-dollar';
 
 export function CalculationSection() {
-  const [pipValue, setPipValue] = useState<string>("");
-  const [pipQuantity, setPipQuantity] = useState<string>("");
-  const [maxOperationValue, setMaxOperationValue] = useState<string>("");
+  const [pipValue, setPipValue] = useState<string>('');
+  const [pipQuantity, setPipQuantity] = useState<string>('');
+  const [maxOperationValue, setMaxOperationValue] = useState<string>('');
 
   // Quanto vale 1 lote
   const lotValue = Number(pipValue) * Number(pipQuantity);
-  console.log("Valor de 1 lote:", lotValue.toFixed());
 
   // Quantidade de lotes dentro do limite
   const lotQuantityWithinLimit = Number(maxOperationValue) / Number(lotValue);
@@ -87,7 +86,7 @@ export function CalculationSection() {
             rightSlot="USD"
             value={formatDollar(pipValue)}
             onChange={(event) => {
-              const unformattedValue = event.target.value.replace(/\D/g, "");
+              const unformattedValue = event.target.value.replace(/\D/g, '');
 
               setPipValue(unformattedValue);
             }}
@@ -129,7 +128,7 @@ export function CalculationSection() {
             rightSlot="USD"
             value={formatDollar(maxOperationValue)}
             onChange={(event) => {
-              const unformattedValue = event.target.value.replace(/\D/g, "");
+              const unformattedValue = event.target.value.replace(/\D/g, '');
 
               setMaxOperationValue(unformattedValue);
             }}
@@ -147,7 +146,7 @@ export function CalculationSection() {
         justifyContent="space-around"
         alignItems="flex-start"
         gap="2rem"
-        style={{ width: "100%" }}
+        style={{ width: '100%' }}
       >
         <Typography color="#0d4300" fontWeight="500">
           Maior lote dentro do limite
@@ -166,8 +165,8 @@ export function CalculationSection() {
           <br />
           Lote: {lotQuantityAboveLimitFormatted}
           <br />
-          Valor da operação ultrapassa o limite em{" "}
-          {formatDollar(valueOperationExceedsLimitFormatted)}:{" "}
+          Valor da operação ultrapassa o limite em{' '}
+          {formatDollar(valueOperationExceedsLimitFormatted)}:{' '}
           {aboveOperationValueFormatted}
         </Typography>
       </Flex>

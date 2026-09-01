@@ -1,5 +1,5 @@
 // Libs
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledResultsSection = styled.div`
   width: 100%;

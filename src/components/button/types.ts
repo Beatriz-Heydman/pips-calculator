@@ -1,5 +1,5 @@
 // Libs
-import type { HTMLAttributes, ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from 'react';
 
 export type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
   icon?: ReactNode;
