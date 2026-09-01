@@ -17,6 +17,8 @@ Gerenciador de pacotes: **yarn** (existe `yarn.lock`; não usar npm/pnpm no luga
 
 Não há suíte de testes configurada no projeto.
 
+Não rode `yarn build` nem `yarn lint` automaticamente após cada alteração — o usuário avisa se algo quebrar.
+
 ## Arquitetura
 
 ```
@@ -51,3 +53,4 @@ src/
 - **Sem código comentado/morto** deixado em arquivos commitados (imports, JSX ou blocos comentados "por via das dúvidas").
 - **Idioma**: identificadores de código (variáveis, funções, tipos) em inglês; texto de UI e comentários explicativos de regra de negócio em português — siga o que já existe no arquivo.
 - Estilização é sempre via `styled-components`; não há tokens/tema centralizado ainda — cores e espaçamentos são valores literais dentro do `styles.ts` de cada componente. Ao criar um novo componente, siga o mesmo padrão dos existentes em vez de introduzir uma abordagem nova (CSS Modules, inline style, etc.).
+- **Um único styled-component por arquivo `styles.ts`**, com o mesmo nome do componente (`Styled<Nome>`). Elementos internos não viram novos `export const` — usam `<div className="...">` (ou a tag nativa correspondente) e são estilizados via seletor aninhado (`.classe { ... }`) dentro do próprio `Styled<Nome>`. Ver `input/styles.ts` (`.input-container`, `.icon-container`, `.input-content`, `.input`) como referência.
