@@ -11,7 +11,7 @@ export const StyledCalculationSection = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1.5rem 2rem;
-  margin-top: -3.5rem;
+  margin-top: -2rem;
   position: relative;
   z-index: 2;
 `;
