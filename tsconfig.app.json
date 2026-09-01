@@ -16,6 +16,12 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    /* Aliases */
+    "paths": {
+      "@components": ["./src/components/index.ts"],
+      "@shared": ["./src/shared/index.ts"]
+    },
+
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,

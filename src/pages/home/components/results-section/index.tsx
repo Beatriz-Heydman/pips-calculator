@@ -1,5 +1,5 @@
 // Styles
-import { Typography } from '../../../../components/typography';
+import { Typography } from '@components';
 import { StyledResultsSection } from './styles';
 
 export function ResultsSection() {

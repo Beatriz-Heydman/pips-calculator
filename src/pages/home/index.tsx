@@ -1,7 +1,7 @@
 // Componentes
 import { CalculationSection } from './components/calculation-section';
 import { StyledHomeView } from './styles';
-import { Flex } from '../../components/flex';
+import { Flex } from '@components';
 // import { ResultsSection } from "./components/results-section";
 
 export function HomeView() {

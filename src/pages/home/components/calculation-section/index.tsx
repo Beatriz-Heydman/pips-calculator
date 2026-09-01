@@ -5,17 +5,13 @@ import { IoAnalyticsSharp } from 'react-icons/io5';
 import { LuWallet } from 'react-icons/lu';
 
 //Components
-import { Button } from '../../../../components/button';
-import { Flex } from '../../../../components/flex';
-import { Input } from '../../../../components/input';
-import { Separator } from '../../../../components/separator';
-import { Typography } from '../../../../components/typography';
+import { Button, Flex, Input, Separator, Typography } from '@components';
 
 // Styles
 import { StyledCalculationSection } from './styles';
 
 // Utils
-import { formatDollar } from '../../../../shared/utils/format-dollar';
+import { formatDollar } from '@shared';
 
 export function CalculationSection() {
   const [pipValue, setPipValue] = useState<string>('');
