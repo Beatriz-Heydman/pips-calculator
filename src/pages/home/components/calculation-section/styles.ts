@@ -3,16 +3,15 @@ import styled from 'styled-components';
 
 export const StyledCalculationSection = styled.div`
   width: fit-content;
-  min-height: 200px;
+  max-width: 92vw;
   background-color: #fefefe;
   border-radius: 0.75rem;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.22);
+  box-shadow: 0px 10px 25px rgba(15, 23, 65, 0.18);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 1rem 1.5rem;
-  position: absolute;
-  top: 40%;
+  padding: 1.5rem 2rem;
+  margin-top: -3.5rem;
+  position: relative;
+  z-index: 2;
 `;
