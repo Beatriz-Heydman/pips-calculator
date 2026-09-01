@@ -7,7 +7,14 @@ import type { InputProps } from "./types";
 // Styles
 import { StyledInput } from "./styles";
 
-export function Input({ label, leftSlot, rightSlot, value }: InputProps) {
+export function Input({
+  label,
+  leftSlot,
+  rightSlot,
+  value,
+  onChange,
+  placeholder,
+}: InputProps) {
   return (
     <StyledInput>
       {label}
@@ -16,10 +23,18 @@ export function Input({ label, leftSlot, rightSlot, value }: InputProps) {
         <div className="icon-container">{leftSlot}</div>
 
         <div className="input-content">
-          <input className="input" placeholder="0" value={value} />
-          <Typography color="#7c8192" fontSize="0.75rem">
-            {rightSlot}
-          </Typography>
+          <input
+            className="input"
+            type="text"
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
+          />
+          {value && (
+            <Typography color="#7c8192" fontSize="0.75rem">
+              {rightSlot}
+            </Typography>
+          )}
         </div>
       </div>
     </StyledInput>

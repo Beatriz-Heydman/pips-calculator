@@ -51,5 +51,10 @@ export const StyledInput = styled.div`
     font-size: 1.15rem;
     padding: 0 0 0 0.5rem;
     background-color: transparent;
+
+    &::placeholder {
+      font-size: 0.9rem;
+      color: #7c8192;
+    }
   }
 `;
