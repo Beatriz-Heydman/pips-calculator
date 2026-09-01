@@ -3,14 +3,22 @@ import styled from 'styled-components';
 
 export const StyledHeroSection = styled.div`
   width: 100%;
-  max-width: 95vw;
-  margin: auto 0 auto auto;
-  position: relative;
+  background-image: linear-gradient(to right, #000920, #16196d);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-  padding: 1rem 0 2rem 2rem;
+  justify-content: center;
+
+  .hero-inner {
+    width: 100%;
+    max-width: 95vw;
+    margin: auto 0 auto auto;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 0 2rem 2rem;
+    height: 300px;
+  }
 
   .logo {
     width: 48px;
@@ -50,7 +58,9 @@ export const StyledHeroSection = styled.div`
   }
 
   @media (max-width: 768px) {
-    padding: 1.5rem 1.25rem 2rem;
+    .hero-inner {
+      padding: 1.5rem 1.25rem 2rem;
+    }
 
     .hero-content {
       flex: 1 1 auto;
@@ -59,9 +69,6 @@ export const StyledHeroSection = styled.div`
 
     .hero-text {
       max-width: 100%;
-    }
-
-    .hero-image {
     }
   }
 `;
