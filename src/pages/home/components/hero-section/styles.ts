@@ -6,6 +6,7 @@ export const StyledHeroSection = styled.div`
   background-image: linear-gradient(to right, #000920, #16196d);
   display: flex;
   justify-content: center;
+  overflow: hidden;
 
   .hero-inner {
     width: 100%;
