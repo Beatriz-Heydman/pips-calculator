@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 export const StyledInput = styled.div`
-  width: fit-content;
+  width: 17rem;
   height: fit-content;
   display: flex;
   gap: 0.75rem;
@@ -41,10 +41,15 @@ export const StyledInput = styled.div`
     justify-content: center;
     align-items: center;
     padding: 0 0.75rem;
+
+    label {
+      flex-shrink: 0;
+    }
   }
 
   .input {
-    width: fit-content;
+    width: 100%;
+    min-width: 0;
     height: fit-content;
     outline: none;
     border: none;
