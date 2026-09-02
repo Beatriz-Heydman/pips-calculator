@@ -20,6 +20,7 @@ export const StyledResultsSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  outline: none;
   animation: ${fadeInUp} 0.4s ease-out;
 
   .results-header {

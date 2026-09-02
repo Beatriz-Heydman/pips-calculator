@@ -1,5 +1,5 @@
 // Libs
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // Componentes
 import { HeroSection } from './components/hero-section';
@@ -41,6 +41,17 @@ export function HomeView() {
   const [maxOperationValueError, setMaxOperationValueError] = useState<
     string | null
   >(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (results) {
+      resultsRef.current?.focus({ preventScroll: true });
+      resultsRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  }, [results]);
 
   function handleCalculate() {
     const nextPipValueError = getFieldError(pipValue);
@@ -127,7 +138,7 @@ export function HomeView() {
 
       {results && (
         <>
-          <ResultsSection {...results} />
+          <ResultsSection ref={resultsRef} {...results} />
           <AlertSection />
         </>
       )}
