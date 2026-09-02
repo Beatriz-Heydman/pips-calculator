@@ -87,6 +87,14 @@ export const StyledResultsSection = styled.div`
     gap: 1rem;
   }
 
+  .result-card.success .card {
+    background-color: #fdfffd;
+  }
+
+  .result-card.warning .card {
+    background-color: #fffcf7;
+  }
+
   .card-header {
     display: flex;
     align-items: flex-start;
@@ -140,7 +148,14 @@ export const StyledResultsSection = styled.div`
 
   .card-divider {
     height: 1px;
-    background-color: #edeff5;
+  }
+
+  .result-card.success .card-divider {
+    background-color: #cafbca;
+  }
+
+  .result-card.warning .card-divider {
+    background-color: #ffe9cb;
   }
 
   .card-stats {
