@@ -23,6 +23,9 @@ export function CalculationSection({
   onPipQuantityChange,
   onMaxOperationValueChange,
   onCalculate,
+  pipValueError,
+  pipQuantityError,
+  maxOperationValueError,
 }: CalculationSectionProps) {
   return (
     <StyledCalculationSection>
@@ -51,6 +54,7 @@ export function CalculationSection({
             leftSlot={<PiCurrencyDollarBold size={18} color="#1650d8" />}
             rightSlot="USD"
             value={formatDollar(pipValue)}
+            errorMessage={pipValueError}
             onChange={(event) => {
               const unformattedValue = event.target.value.replace(/\D/g, '');
 
@@ -73,6 +77,7 @@ export function CalculationSection({
             leftSlot={<IoAnalyticsSharp size={18} color="#1650d8" />}
             rightSlot="Pips"
             value={pipQuantity}
+            errorMessage={pipQuantityError}
             onChange={(event) => {
               const unformattedValue = event.target.value.replace(/\D/g, '');
 
@@ -95,6 +100,7 @@ export function CalculationSection({
             leftSlot={<LuWallet size={20} color="#1650d8" />}
             rightSlot="USD"
             value={formatDollar(maxOperationValue)}
+            errorMessage={maxOperationValueError}
             onChange={(event) => {
               const unformattedValue = event.target.value.replace(/\D/g, '');
 

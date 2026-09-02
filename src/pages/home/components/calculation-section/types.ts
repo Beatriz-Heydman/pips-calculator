@@ -6,4 +6,7 @@ export type CalculationSectionProps = {
   onPipQuantityChange: (value: string) => void;
   onMaxOperationValueChange: (value: string) => void;
   onCalculate: () => void;
+  pipValueError: string | null;
+  pipQuantityError: string | null;
+  maxOperationValueError: string | null;
 };

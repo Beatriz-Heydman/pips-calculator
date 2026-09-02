@@ -14,13 +14,53 @@ import type { ResultsSectionProps } from './components/results-section/types';
 // Utils
 import { formatDollar } from '@shared';
 
+const REQUIRED_FIELD_MESSAGE = 'Preencha esse campo.';
+const INVALID_VALUE_MESSAGE = 'Preencha o campo com um valor válido.';
+
+function getFieldError(value: string): string | null {
+  if (value.trim() === '') {
+    return REQUIRED_FIELD_MESSAGE;
+  }
+
+  if (Number(value) <= 0) {
+    return INVALID_VALUE_MESSAGE;
+  }
+
+  return null;
+}
+
 export function HomeView() {
-  const [pipValue, setPipValue] = useState<string>('');
+  const [pipValue, setPipValue] = useState<string>('100');
   const [pipQuantity, setPipQuantity] = useState<string>('');
   const [maxOperationValue, setMaxOperationValue] = useState<string>('');
   const [results, setResults] = useState<ResultsSectionProps | null>(null);
+  const [pipValueError, setPipValueError] = useState<string | null>(null);
+  const [pipQuantityError, setPipQuantityError] = useState<string | null>(
+    null,
+  );
+  const [maxOperationValueError, setMaxOperationValueError] = useState<
+    string | null
+  >(null);
 
   function handleCalculate() {
+    const nextPipValueError = getFieldError(pipValue);
+    const nextPipQuantityError = getFieldError(pipQuantity);
+    const nextMaxOperationValueError = getFieldError(maxOperationValue);
+
+    setPipValueError(nextPipValueError);
+    setPipQuantityError(nextPipQuantityError);
+    setMaxOperationValueError(nextMaxOperationValueError);
+
+    if (
+      nextPipValueError ||
+      nextPipQuantityError ||
+      nextMaxOperationValueError
+    ) {
+      setResults(null);
+
+      return;
+    }
+
     // Quanto vale 1 lote
     const lotValue = Number(pipValue) * Number(pipQuantity);
 
@@ -80,6 +120,9 @@ export function HomeView() {
         onPipQuantityChange={setPipQuantity}
         onMaxOperationValueChange={setMaxOperationValue}
         onCalculate={handleCalculate}
+        pipValueError={pipValueError}
+        pipQuantityError={pipQuantityError}
+        maxOperationValueError={maxOperationValueError}
       />
 
       {results && (
