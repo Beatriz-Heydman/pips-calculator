@@ -82,9 +82,12 @@ export function HomeView() {
         onCalculate={handleCalculate}
       />
 
-      {results && <ResultsSection {...results} />}
-
-      <AlertSection />
+      {results && (
+        <>
+          <ResultsSection {...results} />
+          <AlertSection />
+        </>
+      )}
     </StyledHomeView>
   );
 }
