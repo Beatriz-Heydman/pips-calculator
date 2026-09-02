@@ -1,5 +1,17 @@
 // Libs
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const StyledResultsSection = styled.div`
   width: 100%;
@@ -8,6 +20,7 @@ export const StyledResultsSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  animation: ${fadeInUp} 0.4s ease-out;
 
   .results-header {
     display: flex;
@@ -36,6 +49,11 @@ export const StyledResultsSection = styled.div`
     display: flex;
     align-items: flex-start;
     gap: 1.25rem;
+    animation: ${fadeInUp} 0.4s ease-out backwards;
+  }
+
+  .result-card:nth-child(2) {
+    animation-delay: 0.1s;
   }
 
   .result-card .marker {
