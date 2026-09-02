@@ -14,6 +14,7 @@ export function Input({
   value,
   onChange,
   placeholder,
+  errorMessage,
 }: InputProps) {
   return (
     <StyledInput>
@@ -37,6 +38,12 @@ export function Input({
           )}
         </div>
       </div>
+
+      {errorMessage && (
+        <Typography color="#dc2626" fontSize="0.8rem" fontWeight="500">
+          {errorMessage}
+        </Typography>
+      )}
     </StyledInput>
   );
 }

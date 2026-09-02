@@ -5,4 +5,5 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   leftSlot: ReactNode;
   rightSlot: string;
   value: string;
+  errorMessage?: string | null;
 };
