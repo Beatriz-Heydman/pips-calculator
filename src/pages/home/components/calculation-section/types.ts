@@ -1,12 +1,15 @@
-export type CalculationSectionProps = {
+// Libs
+import type { BaseSyntheticEvent } from 'react';
+import type { Control, FieldErrors } from 'react-hook-form';
+
+export type CalculationFormValues = {
   pipValue: string;
   pipQuantity: string;
   maxOperationValue: string;
-  onPipValueChange: (value: string) => void;
-  onPipQuantityChange: (value: string) => void;
-  onMaxOperationValueChange: (value: string) => void;
-  onCalculate: () => void;
-  pipValueError: string | null;
-  pipQuantityError: string | null;
-  maxOperationValueError: string | null;
+};
+
+export type CalculationSectionProps = {
+  control: Control<CalculationFormValues>;
+  errors: FieldErrors<CalculationFormValues>;
+  onSubmit: (event: BaseSyntheticEvent) => void;
 };

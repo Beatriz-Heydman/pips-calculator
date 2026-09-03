@@ -1,7 +1,7 @@
 // Libs
 import styled from 'styled-components';
 
-export const StyledCalculationSection = styled.div`
+export const StyledCalculationSection = styled.form`
   width: fit-content;
   max-width: 92vw;
   background-color: #fefefe;

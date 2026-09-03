@@ -1,4 +1,5 @@
 // Libs
+import { Controller } from 'react-hook-form';
 import { PiCurrencyDollarBold, PiCalculatorLight } from 'react-icons/pi';
 import { IoAnalyticsSharp } from 'react-icons/io5';
 import { LuWallet } from 'react-icons/lu';
@@ -15,105 +16,134 @@ import { StyledCalculationSection } from './styles';
 // Utils
 import { formatDollar } from '@shared';
 
+const REQUIRED_FIELD_MESSAGE = 'Preencha esse campo.';
+const INVALID_VALUE_MESSAGE = 'Preencha o campo com um valor válido.';
+
+function validateField(value: string) {
+  if (value.trim() === '') {
+    return REQUIRED_FIELD_MESSAGE;
+  }
+
+  if (Number(value) <= 0) {
+    return INVALID_VALUE_MESSAGE;
+  }
+
+  return true;
+}
+
 export function CalculationSection({
-  pipValue,
-  pipQuantity,
-  maxOperationValue,
-  onPipValueChange,
-  onPipQuantityChange,
-  onMaxOperationValueChange,
-  onCalculate,
-  pipValueError,
-  pipQuantityError,
-  maxOperationValueError,
+  control,
+  errors,
+  onSubmit,
 }: CalculationSectionProps) {
   return (
-    <StyledCalculationSection>
+    <StyledCalculationSection onSubmit={onSubmit}>
       <Flex
         justifyContent="center"
         alignItems="flex-end"
         gap="2rem"
         flexWrap="wrap"
-        onKeyDown={(event) => {
-          if (event.key === 'Enter') {
-            onCalculate();
-          }
-        }}
       >
         <Flex gap="2rem" flexWrap="wrap">
-          <Input
-            placeholder="Digite o valor"
-            label={
-              <Flex>
-                <Typography color="#020414" fontWeight="500">
-                  Valor do pip (USD)
-                </Typography>
-                ?
-              </Flex>
-            }
-            leftSlot={<PiCurrencyDollarBold size={18} color="#1650d8" />}
-            rightSlot="USD"
-            value={formatDollar(pipValue)}
-            errorMessage={pipValueError}
-            onChange={(event) => {
-              const unformattedValue = event.target.value.replace(/\D/g, '');
+          <Controller
+            name="pipValue"
+            control={control}
+            rules={{ validate: validateField }}
+            render={({ field }) => (
+              <Input
+                placeholder="Digite o valor"
+                label={
+                  <Flex>
+                    <Typography color="#020414" fontWeight="500">
+                      Valor do pip (USD)
+                    </Typography>
+                    ?
+                  </Flex>
+                }
+                leftSlot={<PiCurrencyDollarBold size={18} color="#1650d8" />}
+                rightSlot="USD"
+                value={formatDollar(field.value)}
+                errorMessage={errors.pipValue?.message}
+                onChange={(event) => {
+                  const unformattedValue = event.target.value.replace(
+                    /\D/g,
+                    '',
+                  );
 
-              onPipValueChange(unformattedValue);
-            }}
+                  field.onChange(unformattedValue);
+                }}
+              />
+            )}
           />
 
           <Separator />
 
-          <Input
-            placeholder="Digite a quantidade"
-            label={
-              <Flex>
-                <Typography color="#020414" fontWeight="500">
-                  Quantidade de pips
-                </Typography>
-                ?
-              </Flex>
-            }
-            leftSlot={<IoAnalyticsSharp size={18} color="#1650d8" />}
-            rightSlot="Pips"
-            value={pipQuantity}
-            errorMessage={pipQuantityError}
-            onChange={(event) => {
-              const unformattedValue = event.target.value.replace(/\D/g, '');
+          <Controller
+            name="pipQuantity"
+            control={control}
+            rules={{ validate: validateField }}
+            render={({ field }) => (
+              <Input
+                placeholder="Digite a quantidade"
+                label={
+                  <Flex>
+                    <Typography color="#020414" fontWeight="500">
+                      Quantidade de pips
+                    </Typography>
+                    ?
+                  </Flex>
+                }
+                leftSlot={<IoAnalyticsSharp size={18} color="#1650d8" />}
+                rightSlot="Pips"
+                value={field.value}
+                errorMessage={errors.pipQuantity?.message}
+                onChange={(event) => {
+                  const unformattedValue = event.target.value.replace(
+                    /\D/g,
+                    '',
+                  );
 
-              onPipQuantityChange(unformattedValue);
-            }}
+                  field.onChange(unformattedValue);
+                }}
+              />
+            )}
           />
 
           <Separator />
 
-          <Input
-            placeholder="Digite o valor máximo"
-            label={
-              <Flex>
-                <Typography color="#020414" fontWeight="500">
-                  Valor máxima da operação
-                </Typography>
-                ?
-              </Flex>
-            }
-            leftSlot={<LuWallet size={20} color="#1650d8" />}
-            rightSlot="USD"
-            value={formatDollar(maxOperationValue)}
-            errorMessage={maxOperationValueError}
-            onChange={(event) => {
-              const unformattedValue = event.target.value.replace(/\D/g, '');
+          <Controller
+            name="maxOperationValue"
+            control={control}
+            rules={{ validate: validateField }}
+            render={({ field }) => (
+              <Input
+                placeholder="Digite o valor máximo"
+                label={
+                  <Flex>
+                    <Typography color="#020414" fontWeight="500">
+                      Valor máxima da operação
+                    </Typography>
+                    ?
+                  </Flex>
+                }
+                leftSlot={<LuWallet size={20} color="#1650d8" />}
+                rightSlot="USD"
+                value={formatDollar(field.value)}
+                errorMessage={errors.maxOperationValue?.message}
+                onChange={(event) => {
+                  const unformattedValue = event.target.value.replace(
+                    /\D/g,
+                    '',
+                  );
 
-              onMaxOperationValueChange(unformattedValue);
-            }}
+                  field.onChange(unformattedValue);
+                }}
+              />
+            )}
           />
         </Flex>
 
-        <Button
-          icon={<PiCalculatorLight size={22} />}
-          label="Calcular"
-          onClick={onCalculate}
-        />
+        <Button icon={<PiCalculatorLight size={22} />} label="Calcular" />
       </Flex>
     </StyledCalculationSection>
   );

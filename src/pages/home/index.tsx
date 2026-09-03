@@ -1,5 +1,6 @@
 // Libs
 import { useEffect, useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 // Componentes
 import { HeroSection } from './components/hero-section';
@@ -10,37 +11,22 @@ import { StyledHomeView } from './styles';
 
 // Types
 import type { ResultsSectionProps } from './components/results-section/types';
+import type { CalculationFormValues } from './components/calculation-section/types';
 
 // Utils
 import { formatDollar } from '@shared';
 
-const REQUIRED_FIELD_MESSAGE = 'Preencha esse campo.';
-const INVALID_VALUE_MESSAGE = 'Preencha o campo com um valor válido.';
-
-function getFieldError(value: string): string | null {
-  if (value.trim() === '') {
-    return REQUIRED_FIELD_MESSAGE;
-  }
-
-  if (Number(value) <= 0) {
-    return INVALID_VALUE_MESSAGE;
-  }
-
-  return null;
-}
-
 export function HomeView() {
-  const [pipValue, setPipValue] = useState<string>('100');
-  const [pipQuantity, setPipQuantity] = useState<string>('');
-  const [maxOperationValue, setMaxOperationValue] = useState<string>('');
-  const [results, setResults] = useState<ResultsSectionProps | null>(null);
-  const [pipValueError, setPipValueError] = useState<string | null>(null);
-  const [pipQuantityError, setPipQuantityError] = useState<string | null>(
-    null,
+  const { control, handleSubmit, formState } = useForm<CalculationFormValues>(
+    {
+      defaultValues: {
+        pipValue: '100',
+        pipQuantity: '',
+        maxOperationValue: '',
+      },
+    },
   );
-  const [maxOperationValueError, setMaxOperationValueError] = useState<
-    string | null
-  >(null);
+  const [results, setResults] = useState<ResultsSectionProps | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -53,31 +39,13 @@ export function HomeView() {
     }
   }, [results]);
 
-  function handleCalculate() {
-    const nextPipValueError = getFieldError(pipValue);
-    const nextPipQuantityError = getFieldError(pipQuantity);
-    const nextMaxOperationValueError = getFieldError(maxOperationValue);
-
-    setPipValueError(nextPipValueError);
-    setPipQuantityError(nextPipQuantityError);
-    setMaxOperationValueError(nextMaxOperationValueError);
-
-    if (
-      nextPipValueError ||
-      nextPipQuantityError ||
-      nextMaxOperationValueError
-    ) {
-      setResults(null);
-
-      return;
-    }
-
+  function onSubmit(values: CalculationFormValues) {
     // Quanto vale 1 lote
-    const lotValue = Number(pipValue) * Number(pipQuantity);
+    const lotValue = Number(values.pipValue) * Number(values.pipQuantity);
 
     // Quantidade de lotes dentro do limite
     const lotQuantityWithinLimit =
-      Number(maxOperationValue) / Number(lotValue);
+      Number(values.maxOperationValue) / Number(lotValue);
 
     // Valor da quantidade de lote dentro do limite formatado
     const lotQuantityWithinLimitFormatted =
@@ -124,16 +92,9 @@ export function HomeView() {
       <HeroSection />
 
       <CalculationSection
-        pipValue={pipValue}
-        pipQuantity={pipQuantity}
-        maxOperationValue={maxOperationValue}
-        onPipValueChange={setPipValue}
-        onPipQuantityChange={setPipQuantity}
-        onMaxOperationValueChange={setMaxOperationValue}
-        onCalculate={handleCalculate}
-        pipValueError={pipValueError}
-        pipQuantityError={pipQuantityError}
-        maxOperationValueError={maxOperationValueError}
+        control={control}
+        errors={formState.errors}
+        onSubmit={handleSubmit(onSubmit)}
       />
 
       {results && (
