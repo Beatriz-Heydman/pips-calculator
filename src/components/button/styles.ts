@@ -20,6 +20,10 @@ export const StyledButton = styled.button`
   transition: all ease 0.3s;
   cursor: pointer;
 
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
   &:hover {
     transform: translateY(-1px);
     box-shadow:
