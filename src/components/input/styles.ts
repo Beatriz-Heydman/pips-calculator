@@ -12,6 +12,10 @@ export const StyledInput = styled.div`
   outline: none;
   border: none;
 
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
   .input-container {
     width: 100%;
     height: fit-content;
