@@ -14,4 +14,15 @@ export const StyledCalculationSection = styled.form`
   margin-top: -2rem;
   position: relative;
   z-index: 2;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 2rem 1.5rem;
+
+    .calculation-fields,
+    .calculation-inputs {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
 `;

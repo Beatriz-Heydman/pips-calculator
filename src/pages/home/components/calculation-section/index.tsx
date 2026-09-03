@@ -39,12 +39,13 @@ export function CalculationSection({
   return (
     <StyledCalculationSection onSubmit={onSubmit}>
       <Flex
+        className="calculation-fields"
         justifyContent="center"
         alignItems="flex-end"
         gap="2rem"
         flexWrap="wrap"
       >
-        <Flex gap="2rem" flexWrap="wrap">
+        <Flex className="calculation-inputs" gap="2rem" flexWrap="wrap">
           <Controller
             name="pipValue"
             control={control}
