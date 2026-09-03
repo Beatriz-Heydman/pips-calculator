@@ -60,7 +60,7 @@ export const StyledHeroSection = styled.div`
 
   @media (max-width: 768px) {
     .hero-inner {
-      padding: 1.5rem 1.25rem 2rem;
+      padding: 0.5rem 1.25rem 2rem;
     }
 
     .hero-content {
