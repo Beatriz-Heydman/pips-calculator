@@ -52,6 +52,7 @@ export function CalculationSection({
             rules={{ validate: validateField }}
             render={({ field }) => (
               <Input
+                inputMode="numeric"
                 placeholder="Digite o valor"
                 label={
                   <Flex>
@@ -85,6 +86,7 @@ export function CalculationSection({
             rules={{ validate: validateField }}
             render={({ field }) => (
               <Input
+                inputMode="numeric"
                 placeholder="Digite a quantidade"
                 label={
                   <Flex>
@@ -118,6 +120,7 @@ export function CalculationSection({
             rules={{ validate: validateField }}
             render={({ field }) => (
               <Input
+                inputMode="numeric"
                 placeholder="Digite o valor máximo"
                 label={
                   <Flex>
