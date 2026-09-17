@@ -11,7 +11,6 @@ export function Input({
   label,
   leftSlot,
   rightSlot,
-  value,
   errorMessage,
   className,
   ...props
@@ -25,7 +24,7 @@ export function Input({
 
         <div className="input-content">
           <input className={`input ${className || ''}`} {...props} />
-          {value && (
+          {props.value && (
             <Typography color="#7c8192" fontSize="0.75rem">
               {rightSlot}
             </Typography>
