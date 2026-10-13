@@ -27,7 +27,7 @@ export function HomeView() {
         pipValue: preferences.pipValue,
         pipQuantity: '',
         maxOperationValue: preferences.operationRisk,
-        accountBalance: '',
+        accountBalance: preferences.accountBalance,
         percentagePerOperation: preferences.percentagePerOperation,
         useAccountPercentage: preferences.useAccountPercentage,
       },
@@ -51,6 +51,7 @@ export function HomeView() {
 
     setValue('pipValue', newPreferences.pipValue);
     setValue('maxOperationValue', newPreferences.operationRisk);
+    setValue('accountBalance', newPreferences.accountBalance);
     setValue('percentagePerOperation', newPreferences.percentagePerOperation);
     setValue('useAccountPercentage', newPreferences.useAccountPercentage);
 

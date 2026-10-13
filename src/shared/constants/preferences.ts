@@ -5,6 +5,7 @@ export const PREFERENCES_STORAGE_KEY = 'pips-calculator:preferences';
 
 export const DEFAULT_PREFERENCES: Preferences = {
   useAccountPercentage: false,
+  accountBalance: '',
   percentagePerOperation: '5',
   operationRisk: '',
   pipValue: '100',

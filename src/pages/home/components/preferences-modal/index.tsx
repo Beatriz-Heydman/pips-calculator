@@ -1,6 +1,6 @@
 // Libs
 import { Controller, useForm } from 'react-hook-form';
-import { PiCurrencyDollarBold } from 'react-icons/pi';
+import { PiBankBold, PiCurrencyDollarBold } from 'react-icons/pi';
 import { IoAnalyticsSharp } from 'react-icons/io5';
 import { LuPercent } from 'react-icons/lu';
 
@@ -65,6 +65,42 @@ export function PreferencesModal({
               />
             )}
           />
+        </div>
+
+        <div className="preference-row">
+          <div className="preference-icon">
+            <PiBankBold size={18} />
+          </div>
+
+          <div className="preference-text">
+            <Typography color="#020414" fontWeight="600">
+              Saldo da conta (USD)
+            </Typography>
+            <Typography color="#5b6480" fontSize="0.85rem" fontWeight="400">
+              Informe o saldo padrão da sua conta para o cálculo por
+              percentual.
+            </Typography>
+          </div>
+
+          <div className="preference-control">
+            <Controller
+              name="accountBalance"
+              control={control}
+              rules={{ validate: validateOptional(validateField) }}
+              render={({ field }) => (
+                <Input
+                  inputMode="numeric"
+                  placeholder="Ex.: 1000"
+                  rightSlot="USD"
+                  value={formatDollar(field.value)}
+                  errorMessage={errors.accountBalance?.message}
+                  onChange={(event) =>
+                    field.onChange(event.target.value.replace(/\D/g, ''))
+                  }
+                />
+              )}
+            />
+          </div>
         </div>
 
         <div className="preference-row">
