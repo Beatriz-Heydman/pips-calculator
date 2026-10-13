@@ -7,25 +7,31 @@ import { HeroSection } from './components/hero-section';
 import { CalculationSection } from './components/calculation-section';
 import { ResultsSection } from './components/results-section';
 import { AlertSection } from './components/alert-section';
+import { PreferencesModal } from './components/preferences-modal';
 import { StyledHomeView } from './styles';
 
 // Types
 import type { ResultsSectionProps } from './components/results-section/types';
 import type { CalculationFormValues } from './components/calculation-section/types';
+import type { Preferences } from '@shared';
 
 // Utils
-import { formatDollar } from '@shared';
+import { formatDollar, loadPreferences, savePreferences } from '@shared';
 
 export function HomeView() {
-  const { control, handleSubmit, formState } = useForm<CalculationFormValues>(
-    {
+  const [preferences, setPreferences] = useState(loadPreferences);
+  const [isPreferencesOpen, setIsPreferencesOpen] = useState(false);
+  const { control, handleSubmit, formState, setValue } =
+    useForm<CalculationFormValues>({
       defaultValues: {
-        pipValue: '100',
+        pipValue: preferences.pipValue,
         pipQuantity: '',
-        maxOperationValue: '',
+        maxOperationValue: preferences.operationRisk,
+        accountBalance: '',
+        percentagePerOperation: preferences.percentagePerOperation,
+        useAccountPercentage: preferences.useAccountPercentage,
       },
-    },
-  );
+    });
   const [results, setResults] = useState<ResultsSectionProps | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -39,13 +45,31 @@ export function HomeView() {
     }
   }, [results]);
 
+  function handleSavePreferences(newPreferences: Preferences) {
+    savePreferences(newPreferences);
+    setPreferences(newPreferences);
+
+    setValue('pipValue', newPreferences.pipValue);
+    setValue('maxOperationValue', newPreferences.operationRisk);
+    setValue('percentagePerOperation', newPreferences.percentagePerOperation);
+    setValue('useAccountPercentage', newPreferences.useAccountPercentage);
+
+    setIsPreferencesOpen(false);
+  }
+
   function onSubmit(values: CalculationFormValues) {
     // Quanto vale 1 lote
     const lotValue = Number(values.pipValue) * Number(values.pipQuantity);
 
+    // Valor máximo da operação: percentual do saldo da conta ou valor informado
+    const maxOperationValue = values.useAccountPercentage
+      ? (Number(values.accountBalance) *
+          Number(values.percentagePerOperation)) /
+        100
+      : Number(values.maxOperationValue);
+
     // Quantidade de lotes dentro do limite
-    const lotQuantityWithinLimit =
-      Number(values.maxOperationValue) / Number(lotValue);
+    const lotQuantityWithinLimit = maxOperationValue / Number(lotValue);
 
     // Valor da quantidade de lote dentro do limite formatado
     const lotQuantityWithinLimitFormatted =
@@ -89,7 +113,7 @@ export function HomeView() {
 
   return (
     <StyledHomeView>
-      <HeroSection />
+      <HeroSection onOpenPreferences={() => setIsPreferencesOpen(true)} />
 
       <CalculationSection
         control={control}
@@ -102,6 +126,14 @@ export function HomeView() {
           <ResultsSection ref={resultsRef} {...results} />
           <AlertSection />
         </>
+      )}
+
+      {isPreferencesOpen && (
+        <PreferencesModal
+          preferences={preferences}
+          onSave={handleSavePreferences}
+          onClose={() => setIsPreferencesOpen(false)}
+        />
       )}
     </StyledHomeView>
   );
