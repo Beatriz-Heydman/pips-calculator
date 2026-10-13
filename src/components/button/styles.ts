@@ -1,7 +1,7 @@
 // Libs
 import styled from 'styled-components';
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.button<{ $variant: 'primary' | 'outline' }>`
   width: fit-content;
   height: fit-content;
   display: flex;
@@ -34,4 +34,17 @@ export const StyledButton = styled.button`
   &:active {
     transform: translateY(1px) scaleX(0.98);
   }
+
+  ${({ $variant }) =>
+    $variant === 'outline' &&
+    `
+      background-color: #fefefe;
+      color: #2530d8;
+      box-shadow: none;
+
+      &:hover {
+        background-color: #eef3fb;
+        box-shadow: none;
+      }
+    `}
 `;

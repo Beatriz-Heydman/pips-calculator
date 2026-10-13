@@ -1,8 +1,9 @@
 // Libs
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
-export type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   icon?: ReactNode;
   label?: string;
+  variant?: 'primary' | 'outline';
   onClick?: () => void;
 };
