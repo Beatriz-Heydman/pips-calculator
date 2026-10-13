@@ -20,7 +20,7 @@ export function Input({
       {label}
 
       <div className="input-container">
-        <div className="icon-container">{leftSlot}</div>
+        {leftSlot && <div className="icon-container">{leftSlot}</div>}
 
         <div className="input-content">
           <input className={`input ${className || ''}`} {...props} />
