@@ -1,13 +1,16 @@
 // Libs
-import { IoTrendingUp } from 'react-icons/io5';
+import { IoSettingsSharp, IoTrendingUp } from 'react-icons/io5';
 
 // Components
 import { Flex, Typography } from '@components';
 
+// Types
+import type { HeroSectionProps } from './types';
+
 // Styles
 import { StyledHeroSection } from './styles';
 
-export function HeroSection() {
+export function HeroSection({ onOpenPreferences }: HeroSectionProps) {
   return (
     <StyledHeroSection>
       <div className="hero-inner">
@@ -17,8 +20,19 @@ export function HeroSection() {
           alignItems="flex-start"
           gap="1.5rem"
         >
-          <div className="logo">
-            <IoTrendingUp size={24} color="#fff" />
+          <div className="hero-header">
+            <div className="logo">
+              <IoTrendingUp size={24} color="#fff" />
+            </div>
+
+            <button
+              type="button"
+              className="settings-button"
+              aria-label="Abrir preferências"
+              onClick={onOpenPreferences}
+            >
+              <IoSettingsSharp size={22} color="#fff" />
+            </button>
           </div>
 
           <div className="hero-text">

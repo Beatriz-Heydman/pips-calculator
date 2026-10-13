@@ -34,8 +34,36 @@ export const StyledHeroSection = styled.div`
   }
 
   .hero-content {
+    flex: 1 1 auto;
+    min-width: 0;
     position: relative;
     z-index: 1;
+  }
+
+  .hero-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 2rem;
+  }
+
+  .settings-button {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: background-color ease 0.3s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
   }
 
   .hero-text {
@@ -63,9 +91,8 @@ export const StyledHeroSection = styled.div`
       padding: 0.5rem 1.25rem 2rem;
     }
 
-    .hero-content {
-      flex: 1 1 auto;
-      min-width: 0;
+    .hero-header {
+      padding-right: 1.25rem;
     }
 
     .hero-text {
